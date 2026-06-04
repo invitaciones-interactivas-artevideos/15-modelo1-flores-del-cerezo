@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Invitación Premium</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;500&family=Great+Vibes&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<!-- 🔤 LIBRERÍA DE FUENTES -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;500&family=Great+Vibes&family=Cinzel:wght@400;600&family=Dancing+Script:wght@400;700&family=Allura&family=Parisienne&family=Alex+Brush&family=Italiana&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
   --primary:#d4af37;
   --bg:#000;
@@ -94,7 +96,7 @@ body{
   cursor:pointer;
 }
 
-/* BOX */
+/* ================= SECCIONES ================= */
 section{
   padding:60px 20px;
   text-align:center;
@@ -149,24 +151,38 @@ section{
   object-fit:cover;
 }
 
-/* BOTONES TIPOGRAFÍA */
-.font-tools{
+/* ================= CATÁLOGO FUENTES ================= */
+.font-catalog{
   position:fixed;
   top:10px;
   right:10px;
-  display:flex;
-  gap:5px;
+  width:220px;
+  max-height:90vh;
+  overflow:auto;
+  background:#111;
+  padding:10px;
+  border-radius:12px;
   z-index:9999;
+  box-shadow:0 10px 30px rgba(0,0,0,0.6);
 }
 
-.font-tools button{
-  padding:6px 10px;
-  border:none;
-  border-radius:8px;
+.font-item{
+  padding:10px;
+  margin-bottom:10px;
+  background:#1c1c1c;
+  border-radius:10px;
   cursor:pointer;
+  transition:0.2s;
+}
+
+.font-item:hover{
+  transform:scale(1.03);
   background:#222;
-  color:white;
-  font-size:12px;
+}
+
+.font-preview{
+  font-size:1.2rem;
+  color:var(--primary);
 }
 
 /* ANIMACIONES */
@@ -207,12 +223,54 @@ a.button{
 
 <body>
 
-<!-- 🔤 SELECTOR TIPOGRAFÍAS -->
-<div class="font-tools">
-  <button onclick="setFont('playfair')">Elegante</button>
-  <button onclick="setFont('greatvibes')">Firma</button>
-  <button onclick="setFont('cinzel')">Royal</button>
-  <button onclick="setFont('montserrat')">Clean</button>
+<!-- 🎨 CATÁLOGO VISUAL DE FUENTES -->
+<div class="font-catalog">
+
+  <div class="font-item" onclick="setFont('playfair')" style="font-family:'Playfair Display'">
+    <div class="font-preview">Sofía</div>
+    Elegante
+  </div>
+
+  <div class="font-item" onclick="setFont('greatvibes')" style="font-family:'Great Vibes'">
+    <div class="font-preview">Sofía</div>
+    Firma Luxury
+  </div>
+
+  <div class="font-item" onclick="setFont('dancing')" style="font-family:'Dancing Script'">
+    <div class="font-preview">Sofía</div>
+    Dancing Script
+  </div>
+
+  <div class="font-item" onclick="setFont('allura')" style="font-family:'Allura'">
+    <div class="font-preview">Sofía</div>
+    Allura
+  </div>
+
+  <div class="font-item" onclick="setFont('parisienne')" style="font-family:'Parisienne'">
+    <div class="font-preview">Sofía</div>
+    Parisienne
+  </div>
+
+  <div class="font-item" onclick="setFont('alexbrush')" style="font-family:'Alex Brush'">
+    <div class="font-preview">Sofía</div>
+    Alex Brush
+  </div>
+
+  <div class="font-item" onclick="setFont('cinzel')" style="font-family:'Cinzel'">
+    <div class="font-preview">Sofía</div>
+    Royal
+  </div>
+
+  <div class="font-item" onclick="setFont('italiana')" style="font-family:'Italiana'">
+    <div class="font-preview">Sofía</div>
+    Minimal
+  </div>
+
+  <div class="font-item" onclick="setFont('montserrat')" style="font-family:'Montserrat'">
+    <div class="font-preview">Sofía</div>
+    Clean
+  </div>
+
 </div>
 
 <!-- 🎬 BACKGROUND -->
@@ -229,7 +287,6 @@ a.button{
 
     <h1 id="name" class="luxury-name"></h1>
 
-    <!-- 👇 LO QUE PEDISTE: orden correcto -->
     <div class="main-title">Mis 15 años</div>
     <div class="subtitle" id="subtitle"></div>
 
@@ -248,7 +305,6 @@ a.button{
 
 <div class="box">
   <h2>⏳ Cuenta regresiva</h2>
-
   <div class="countdown">
     <div class="time"><span id="d">0</span>Días</div>
     <div class="time"><span id="h">0</span>Horas</div>
@@ -282,16 +338,13 @@ a.button{
 
 <script>
 
-/* ⚙️ CONFIG EDITABLE */
+/* ⚙️ CONFIG */
 const CONFIG = {
   name:"Sofía",
   subtitle:"Una noche inolvidable",
-
   eventDate:"2026-12-20T20:00:00",
-
   whatsapp:"59899999999",
   whatsappText:"Hola! Confirmo mi asistencia",
-
   mapURL:"https://www.google.com/maps"
 };
 
@@ -317,7 +370,7 @@ setInterval(()=>{
   document.getElementById("s").innerText=Math.floor((diff%60000)/1000);
 },1000);
 
-/* MÚSICA */
+/* MUSICA */
 function toggleMusic(){
   const m=document.getElementById("music");
   m.paused?m.play():m.pause();
@@ -328,24 +381,22 @@ function scrollToInfo(){
   document.getElementById("info").scrollIntoView({behavior:"smooth"});
 }
 
-/* TIPOGRAFÍAS */
+/* FUENTES */
 function setFont(type){
 
-  if(type==="playfair"){
-    document.documentElement.style.setProperty('--title-font', "'Playfair Display', serif");
-  }
+  const fonts = {
+    playfair:"'Playfair Display', serif",
+    greatvibes:"'Great Vibes', cursive",
+    dancing:"'Dancing Script', cursive",
+    allura:"'Allura', cursive",
+    parisienne:"'Parisienne', cursive",
+    alexbrush:"'Alex Brush', cursive",
+    cinzel:"'Cinzel', serif",
+    italiana:"'Italiana', serif",
+    montserrat:"'Montserrat', sans-serif"
+  };
 
-  if(type==="greatvibes"){
-    document.documentElement.style.setProperty('--title-font', "'Great Vibes', cursive");
-  }
-
-  if(type==="cinzel"){
-    document.documentElement.style.setProperty('--title-font', "'Cinzel', serif");
-  }
-
-  if(type==="montserrat"){
-    document.documentElement.style.setProperty('--title-font', "'Montserrat', sans-serif");
-  }
+  document.documentElement.style.setProperty('--title-font', fonts[type]);
 }
 
 </script>
