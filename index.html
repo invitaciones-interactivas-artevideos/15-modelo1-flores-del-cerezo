@@ -5,27 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Invitación - 15 años</title>
 
-<!-- 💎 FUENTES (5 opciones fáciles de usar) -->
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;500&family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Alex+Brush&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+<!-- 💎 FUENTES ELEGANTES -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-
- /* 🎨 COLORES PRINCIPALES (AQUI CAMBIAS TODO EL ESTILO) */
  --primary:#ff6f91;
-
- /* 🔳 FONDO GENERAL */
  --bg:#000;
  --text:#fff;
 
- /* 💎 FUENTES (SOLO CAMBIAS EL NOMBRE) */
- --title-font:'Dancing Script', cursive;
+ /* 💎 TIPOS DE LETRA */
+ --title-font:'Great Vibes', cursive;
  --body-font:'Montserrat', sans-serif;
+ --soft-font:'Playfair Display', serif;
 
- /* 🧊 CAJAS (BOXES) */
- --box-bg: rgba(20,20,20,0.75); /* 👈 OPACIDAD DE LOS CUADROS */
- --box-radius:15px;
+ /* 🧊 CAJAS */
+ --box-bg: rgba(20,20,20,0.72);
 }
 
 *{
@@ -51,7 +47,7 @@ body{
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:brightness(0.6);
+  filter:brightness(0.55);
 }
 
 .overlay{
@@ -67,59 +63,72 @@ body{
   align-items:center;
   justify-content:center;
   text-align:center;
+  padding:20px;
 }
 
 .luxury-name{
   font-family:var(--title-font);
   font-size:5rem;
+  letter-spacing:1px;
 }
 
 .main-title{
-  font-family:var(--title-font);
-  font-size:2.8rem;
+  font-family:var(--soft-font);
+  font-size:2.5rem;
+  margin-top:10px;
   color:var(--primary);
 }
 
 .subtitle{
+  margin-top:10px;
   opacity:0.85;
+  font-style:italic;
 }
 
 /* BOTONES */
 .btn{
-  margin-top:15px;
-  padding:12px 22px;
+  margin-top:18px;
+  padding:12px 20px;
   border:none;
   border-radius:30px;
   background:var(--primary);
   color:#000;
   cursor:pointer;
+  font-weight:bold;
 }
 
 /* ================= BOXES ================= */
 .box{
   max-width:850px;
   margin:20px auto;
-  background:var(--box-bg); /* 👈 CAMBIO DE COLOR Y TRANSPARENCIA */
+  background:var(--box-bg);
   padding:25px;
-  border-radius:var(--box-radius);
+  border-radius:18px;
+  backdrop-filter: blur(6px);
 }
 
-/* 🔥 TITULOS DENTRO DE BOX (TAMAÑO EDITABLE) */
 .box h2{
-  font-size:22px; /* 👈 AQUI CAMBIAS TAMAÑO TITULOS */
-  margin-bottom:12px;
+  font-family:var(--soft-font);
+  font-size:20px;
+  margin-bottom:10px;
 }
 
-/* TEXTOS GENERALES */
-.box p{
-  font-size:16px; /* 👈 AQUI CAMBIAS TEXTO NORMAL */
+/* ================= FRASE ELEGANTE ================= */
+.elegant-text{
+  font-family:var(--title-font);
+  font-size:1.8rem;
+  text-align:center;
+  color:#fff;
+  margin-bottom:40px;
+  line-height:1.4;
 }
 
-/* COUNTDOWN */
+/* ================= COUNTDOWN ================= */
 .countdown{
   display:flex;
   justify-content:center;
   gap:12px;
+  flex-wrap:wrap;
 }
 
 .time{
@@ -135,7 +144,7 @@ body{
   display:block;
 }
 
-/* BOTON LINKS */
+/* ================= BOTONES LINK ================= */
 a.button{
   display:inline-block;
   margin-top:10px;
@@ -144,12 +153,31 @@ a.button{
   color:#000;
   border-radius:30px;
   text-decoration:none;
+  font-weight:bold;
 }
 
-/* ANIMACION */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px);}
-  to{opacity:1;transform:translateY(0);}
+/* ================= CARRUSEL ================= */
+.carousel{
+  overflow:hidden;
+  border-radius:15px;
+}
+
+.slides{
+  display:flex;
+  animation:slide 12s infinite;
+}
+
+.slides img{
+  width:100%;
+  height:380px;
+  object-fit:cover;
+}
+
+@keyframes slide{
+  0%{transform:translateX(0);}
+  33%{transform:translateX(-100%);}
+  66%{transform:translateX(-200%);}
+  100%{transform:translateX(0);}
 }
 
 </style>
@@ -169,18 +197,24 @@ a.button{
 <div class="hero">
   <div>
 
-    <!-- 👇 NOMBRE -->
     <h1 id="name" class="luxury-name"></h1>
 
     <div class="main-title">Mis 15 años</div>
 
-    <!-- 💬 FRASE EDITABLE (NUEVA) -->
-    <p class="subtitle">
-      Se acerca la noche tan soñada… y deseo compartirla contigo ✨
-      <!-- 👈 AQUI PUEDES CAMBIAR EL TEXTO -->
-    </p>
+    <!-- 💎 FRASE PRINCIPAL ELEGANTE -->
+    <div class="elegant-text">
+      Se acerca la noche tan soñada…<br>
+      y deseo compartirla contigo ✨
+    </div>
 
     <button class="btn" onclick="scrollToInfo()">Ver invitación</button>
+
+    <!-- 🎵 BOTÓN MÚSICA (RESTAURADO) -->
+    <button class="btn" onclick="toggleMusic()">🎵 Música</button>
+
+    <audio id="music">
+      <source src="musica.mp3">
+    </audio>
 
   </div>
 </div>
@@ -188,24 +222,28 @@ a.button{
 <!-- CONTENIDO -->
 <section id="info">
 
-<!-- 📅 FECHA Y HORA -->
+<!-- 📅 FECHA -->
 <div class="box">
   <h2>📅 Fecha y hora</h2>
-
-  <p>
-    20 de Diciembre de 2026 - 20:00 hs
-    <!-- 👈 AQUI CAMBIAS FECHA Y HORA MANUALMENTE -->
-  </p>
+  <p>20 de Diciembre de 2026 - 20:00 hs</p>
 </div>
 
 <!-- ⏳ COUNTDOWN -->
 <div class="box">
-  <h2>⏳ Faltan...</h2>
+  <h2>⏳ Cuenta regresiva</h2>
   <div class="countdown">
     <div class="time"><span id="d"></span>Días</div>
     <div class="time"><span id="h"></span>Hs</div>
     <div class="time"><span id="m"></span>Min</div>
     <div class="time"><span id="s"></span>Seg</div>
+  </div>
+</div>
+
+<!-- 💬 MENSAJE (AHORA ARRIBA Y MÁS ELEGANTE) -->
+<div class="box">
+  <div class="elegant-text">
+    La noche que soñé toda mi vida finalmente llegó…<br>
+    quiero compartirla con las personas que más quiero 💫
   </div>
 </div>
 
@@ -220,24 +258,12 @@ a.button{
 <!-- 👗 DRESS CODE -->
 <div class="box">
   <h2>👗 Dress Code</h2>
-  <p>
-    Elegante / Formal
-    <!-- 👈 AQUI CAMBIAS VESTIMENTA -->
-  </p>
+  <p>Elegante / Formal</p>
 </div>
 
-<!-- 💬 FRASE EMOTIVA -->
+<!-- 💬 CONFIRMACIÓN -->
 <div class="box">
-  <h2>💬 Mensaje especial</h2>
-  <p>
-    La noche que soñé toda mi vida finalmente llegó… quiero compartirla con las personas que más quiero.
-    <!-- 👈 EDITABLE -->
-  </p>
-</div>
-
-<!-- 🎉 CONFIRMACION -->
-<div class="box">
-  <h2>🎉 Confirmar asistencia</h2>
+  <h2>💌 Confirmar asistencia</h2>
   <a class="button"
      href="https://wa.me/59895090806?text=Hola! Confirmo mi asistencia"
      target="_blank">
@@ -245,17 +271,30 @@ a.button{
   </a>
 </div>
 
+<!-- 📸 ÁLBUM RESTAURADO -->
+<div class="box">
+  <h2>📸 Recuerdos</h2>
+
+  <div class="carousel">
+    <div class="slides">
+      <img src="foto1.png">
+      <img src="foto2.jpg">
+      <img src="principal.jpg">
+      <img src="10añosnena2.jpg">
+    </div>
+  </div>
+</div>
+
 </section>
 
 <script>
 
-/* ⚙️ CONFIG PRINCIPAL */
+/* CONFIG */
 const CONFIG = {
   name:"Sofía",
   eventDate:"2026-12-20T20:00:00"
 };
 
-/* NOMBRE */
 document.getElementById("name").innerText = CONFIG.name;
 
 /* COUNTDOWN */
@@ -271,6 +310,13 @@ setInterval(()=>{
   document.getElementById("s").innerText=Math.floor((diff%60000)/1000);
 },1000);
 
+/* MÚSICA */
+function toggleMusic(){
+  const m=document.getElementById("music");
+  m.paused ? m.play() : m.pause();
+}
+
+/* SCROLL */
 function scrollToInfo(){
   document.getElementById("info").scrollIntoView({behavior:"smooth"});
 }
