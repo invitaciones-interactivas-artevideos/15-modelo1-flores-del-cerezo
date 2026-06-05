@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Invitación - 15 años</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 <style>
 
 :root{
@@ -15,9 +16,9 @@
  --text:#fff;
 
  --title-font:'Great Vibes', cursive;
- --soft-font:'Cormorant Garamond', serif;
---body-font:'Cormorant Garamond', serif;
+ --body-font:'Cormorant Garamond', serif;
 }
+
 *{
  margin:0;
  padding:0;
@@ -69,34 +70,22 @@ body{
  font-size:10rem;
  margin-top:-80px;
 }
- 
+
 .mis15{
  font-family:var(--title-font);
  font-size:6rem;
  margin-top:11px;
  color:var(--primary);
 }
+
 .textos{
  font-family:var(--title-font);
  font-size:5rem;
  margin-top:50px;
 }
 
-/* BOTONES */
-/* BOTONES */
-.btn{
- margin-top:18px;
- padding:12px 20px;
- border:none;
- border-radius:30px;
- background:var(--primary);
- color:#000;
- font-weight:600;
- cursor:pointer;
- font-family: var(--body-font);
- transition: all 0.3s ease;
-}
-
+/* ================= BOTONES PRO ================= */
+.btn,
 a.button{
  font-family: var(--body-font);
  font-weight: 600;
@@ -115,19 +104,14 @@ a.button{
  cursor:pointer;
 
  transition: all 0.3s ease;
+
+ box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
-/* HOVER (AMBOS BOTONES) */
 .btn:hover,
 a.button:hover{
  transform: translateY(-2px);
  filter: brightness(1.1);
-}
-
-/* SOMBRA (AMBOS BOTONES) */
-.btn,
-a.button{
- box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
 /* FLECHA */
@@ -146,7 +130,7 @@ a.button{
  50%{transform:translate(-50%,10px);}
 }
 
-/* BOXES */
+/* ================= BOXES GLASS ================= */
 .box{
  max-width:850px;
  margin:20px auto;
@@ -154,8 +138,8 @@ a.button{
  border-radius:20px;
 
  background: rgba(0,0,0,0.15);
- backdrop-filter: blur(14px);
- -webkit-backdrop-filter: blur(14px);
+ backdrop-filter: blur(16px);
+ -webkit-backdrop-filter: blur(16px);
 
  border: 1px solid rgba(255,255,255,0.08);
 
@@ -172,24 +156,14 @@ a.button{
  align-items:center;
  justify-content:center;
  gap:10px;
- text-align:center;
 
- font-family: var(--soft-font);
+ font-family: var(--body-font);
  font-size: 1.5rem;
  font-weight: 600;
  color: var(--primary);
- letter-spacing: 1px;
  margin-bottom: 20px;
 }
-.box h2 i{
-    margin-right: 10px;
-    font-size: 0.9em;
-}
- .box p{
-    font-size:1rem;
-    line-height:1.8;
-    margin:8px 0;
-}
+
 /* COUNTDOWN */
 .countdown{
  display:flex;
@@ -212,7 +186,7 @@ a.button{
  font-weight:600;
 }
 
-/* ================= NETFLIX SLIDER ================= */
+/* NETFLIX SLIDER */
 .netflix-slider{
  position:relative;
  width:100%;
@@ -238,17 +212,9 @@ a.button{
 /* RESPONSIVE */
 @media (max-width:768px){
 
-.nombrecumpleanera{
- font-size:5rem;
-}
-
-.mis15{
- font-size:4rem;
-}
-
-.textos{
- font-size:1.8rem;
-}
+.nombrecumpleanera{ font-size:5rem; }
+.mis15{ font-size:4rem; }
+.textos{ font-size:1.8rem; }
 
 .box{
  margin:15px;
@@ -262,7 +228,6 @@ a.button{
 
 <body>
 
-<!-- BACKGROUND -->
 <div class="background">
  <video autoplay muted loop playsinline>
   <source src="fondo.mp4">
@@ -270,9 +235,7 @@ a.button{
  <div class="overlay"></div>
 </div>
 
-<!-- HERO -->
 <div class="hero">
-
  <div>
 
   <h1 id="name" class="nombrecumpleanera"></h1>
@@ -298,40 +261,31 @@ a.button{
 
 <section id="info">
 
-<!-- COUNTDOWN -->
 <div class="box">
  <h2>Faltan...</h2>
-
  <div class="countdown">
   <div class="time"><span id="d"></span>Días</div>
   <div class="time"><span id="h"></span>Hs</div>
   <div class="time"><span id="m"></span>Min</div>
   <div class="time"><span id="s"></span>Seg</div>
  </div>
-
 </div>
 
-<!-- FECHA -->
 <div class="box">
  <h2><i class="fa-regular fa-calendar"></i> Fecha y lugar</h2>
  <p>Sábado 10 de octubre</p>
  <p>21:00 horas</p>
  <p>Salón Aurora Palace</p>
  <p>Avenida Las Flores 2020</p>
- 
 </div>
 
-<!-- UBICACIÓN -->
 <div class="box">
- <h2><i class="fa-solid fa-location-dot"></i> Conoce el lugar<br> 
-  de la fiesta<br> 
-  y descubre cómo llegar</h2>
+ <h2><i class="fa-solid fa-location-dot"></i> Ubicación</h2>
  <a class="button" href="https://maps.app.goo.gl/wWyTSPxvvRapRhbP7">Ver Mapa</a>
 </div>
 
-<!-- CARRUSEL NETFLIX -->
 <div class="box">
-<h2><i class="fa-regular fa-image"></i> Mis Recuerdos</h2>
+ <h2><i class="fa-regular fa-image"></i> Mis Recuerdos</h2>
 
  <div class="netflix-slider">
   <img class="slide active" src="foto1.jpg">
@@ -348,19 +302,17 @@ a.button{
 
 </div>
 
-<!-- DRESS CODE -->
 <div class="box">
  <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Dress Code</h2>
  <p>Semiformal</p>
 </div>
 
-<!-- CONFIRMACIÓN -->
 <div class="box">
 
-<div class="textos" style="margin-bottom:15px; text-align:center;">
-  Te espero para compartir<br>
-  esta noche tan especial…<br>
-  será una noche para recordar siempre ✨
+<div class="textos" style="margin-bottom:15px;">
+ Te espero para compartir<br>
+ esta noche tan especial…<br>
+ será una noche para recordar siempre ✨
 </div>
 
  <a class="button" href="#">
@@ -380,7 +332,6 @@ const CONFIG = {
 
 document.getElementById("name").innerText = CONFIG.name;
 
-/* COUNTDOWN */
 setInterval(()=>{
  const now = new Date().getTime();
  const diff = new Date(CONFIG.eventDate).getTime() - now;
@@ -391,18 +342,15 @@ setInterval(()=>{
  document.getElementById("s").innerText=Math.floor((diff%60000)/1000);
 },1000);
 
-/* SCROLL */
 function scrollToInfo(){
  document.getElementById("info").scrollIntoView({behavior:"smooth"});
 }
 
-/* MUSIC */
 function toggleMusic(){
  const m=document.getElementById("music");
  m.paused ? m.play() : m.pause();
 }
 
-/* NETFLIX SLIDER */
 let current = 0;
 
 function initSlider(){
@@ -413,13 +361,10 @@ function initSlider(){
   slides[i].classList.add("active");
  }
 
- function next(){
+ setInterval(()=>{
   current = (current + 1) % slides.length;
   show(current);
- }
-
- show(0);
- setInterval(next, 3000);
+ }, 3000);
 }
 
 window.addEventListener("load", initSlider);
