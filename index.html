@@ -105,7 +105,7 @@ a.button{
  font-weight:600;
 }
 
-/* FLECHA ABAJO */
+/* FLECHA */
 .scroll-down{
  position:absolute;
  bottom:20px;
@@ -165,13 +165,14 @@ a.button{
 .netflix-slider{
  position:relative;
  width:100%;
- height:380px;
+ height:260px;
  overflow:hidden;
  border-radius:15px;
 }
 
 .slide{
  position:absolute;
+ inset:0;
  width:100%;
  height:100%;
  object-fit:cover;
@@ -181,6 +182,28 @@ a.button{
 
 .slide.active{
  opacity:1;
+}
+
+/* RESPONSIVE */
+@media (max-width:768px){
+
+.luxury-name{
+ font-size:3rem;
+}
+
+.main-title{
+ font-size:1.8rem;
+}
+
+.elegant-script{
+ font-size:1.3rem;
+}
+
+.box{
+ margin:15px;
+ padding:20px;
+}
+
 }
 
 </style>
@@ -257,7 +280,6 @@ a.button{
  <h2>📸 Recuerdos</h2>
 
  <div class="netflix-slider">
-
   <img class="slide active" src="foto1.jpg">
   <img class="slide" src="foto2.jpg">
   <img class="slide" src="foto3.jpg">
@@ -268,7 +290,6 @@ a.button{
   <img class="slide" src="foto8.jpg">
   <img class="slide" src="foto9.jpg">
   <img class="slide" src="foto10.jpg">
-
  </div>
 
 </div>
@@ -315,33 +336,38 @@ setInterval(()=>{
  document.getElementById("s").innerText=Math.floor((diff%60000)/1000);
 },1000);
 
+/* SCROLL */
+function scrollToInfo(){
+ document.getElementById("info").scrollIntoView({behavior:"smooth"});
+}
+
 /* MUSIC */
 function toggleMusic(){
  const m=document.getElementById("music");
  m.paused ? m.play() : m.pause();
 }
 
-/* SCROLL */
-function scrollToInfo(){
- document.getElementById("info").scrollIntoView({behavior:"smooth"});
-}
-
 /* NETFLIX SLIDER */
 let current = 0;
-const slides = document.querySelectorAll(".slide");
 
-function showSlide(i){
- slides.forEach(s => s.classList.remove("active"));
- slides[i].classList.add("active");
+function initSlider(){
+ const slides = document.querySelectorAll(".slide");
+
+ function show(i){
+  slides.forEach(s => s.classList.remove("active"));
+  slides[i].classList.add("active");
+ }
+
+ function next(){
+  current = (current + 1) % slides.length;
+  show(current);
+ }
+
+ show(0);
+ setInterval(next, 3500);
 }
 
-function nextSlide(){
- current++;
- if(current >= slides.length) current = 0;
- showSlide(current);
-}
-
-setInterval(nextSlide, 4000);
+window.addEventListener("load", initSlider);
 
 </script>
 
