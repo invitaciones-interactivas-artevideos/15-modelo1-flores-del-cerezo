@@ -1,3 +1,6 @@
+Copiá y pegá esto como tu `index.html`:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -241,19 +244,43 @@ a.button:hover {
   overflow: hidden;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.28);
   touch-action: pan-y;
 }
 
 .carousel-track {
   display: flex;
-  height: clamp(260px, 56vw, 430px);
+  height: clamp(320px, 58vw, 560px);
   transition: transform 0.55s ease;
 }
 
-.slide {
+.slide-frame {
+  position: relative;
   min-width: 100%;
   height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.26);
+}
+
+.slide-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  filter: blur(22px) brightness(0.72) saturate(1.05);
+  transform: scale(1.12);
+  opacity: 0.7;
+}
+
+.slide {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   user-select: none;
   pointer-events: none;
 }
@@ -313,6 +340,92 @@ a.button:hover {
   margin: 0 0 20px;
 }
 
+.modulo-opcional[hidden] {
+  display: none;
+}
+
+.box-texto {
+  max-width: 650px;
+  margin-bottom: 18px;
+}
+
+.gift-panel {
+  width: min(520px, 100%);
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  text-align: left;
+}
+
+.gift-panel[hidden] {
+  display: none;
+}
+
+.gift-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 1.08rem;
+}
+
+.gift-row:last-child {
+  border-bottom: 0;
+}
+
+.gift-row strong {
+  color: var(--color-secundario);
+}
+
+.copy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.copy-btn {
+  min-height: 38px;
+  padding: 9px 14px;
+  font-size: 0.98rem;
+}
+
+.animated-icon {
+  animation: iconFloat 2.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.box:nth-child(2) .animated-icon {
+  animation-delay: 0.2s;
+}
+
+.box:nth-child(3) .animated-icon {
+  animation-delay: 0.4s;
+}
+
+.box:nth-child(4) .animated-icon {
+  animation-delay: 0.6s;
+}
+
+.box:nth-child(5) .animated-icon {
+  animation-delay: 0.8s;
+}
+
+@keyframes iconFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.08);
+    filter: drop-shadow(0 0 8px var(--color-principal));
+  }
+}
+
 @media (max-width: 560px) {
   .acciones {
     flex-direction: column;
@@ -333,9 +446,20 @@ a.button:hover {
     padding: 10px 4px;
   }
 
+  .carousel-track {
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
   .carousel-btn {
     width: 38px;
     height: 38px;
+  }
+
+  .gift-row {
+    grid-template-columns: 1fr;
+    gap: 2px;
+    text-align: center;
   }
 }
 </style>
@@ -386,7 +510,7 @@ a.button:hover {
     </div>
 
     <div class="box detalle-evento">
-      <h2><i class="fa-regular fa-calendar"></i> Fecha y lugar</h2>
+      <h2><i class="fa-regular fa-calendar animated-icon"></i> Fecha y lugar</h2>
       <p id="dateText"></p>
       <p id="timeText"></p>
       <p id="venueText"></p>
@@ -394,12 +518,12 @@ a.button:hover {
     </div>
 
     <div class="box">
-      <h2><i class="fa-solid fa-location-dot"></i> Mira cómo llegar</h2>
+      <h2><i class="fa-solid fa-location-dot animated-icon"></i> Mira cómo llegar</h2>
       <a id="mapLink" class="button" href="#" target="_blank" rel="noopener">Ver mapa</a>
     </div>
 
     <div class="box">
-      <h2><i class="fa-regular fa-image"></i> Mis recuerdos</h2>
+      <h2><i class="fa-regular fa-image animated-icon"></i> Mis recuerdos</h2>
       <div class="carousel" aria-label="Carrete de fotos">
         <button class="carousel-btn prev" type="button" aria-label="Foto anterior"><i class="fa-solid fa-chevron-left"></i></button>
         <div class="carousel-viewport">
@@ -411,8 +535,46 @@ a.button:hover {
     </div>
 
     <div class="box">
-      <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Dress code</h2>
+      <h2><i class="fa-regular fa-heart animated-icon"></i> Confirmación de asistencia</h2>
+      <p class="box-texto">
+        Tu presencia es muy importante para mí.
+        ¡Me encantaría que me acompañes en esta noche tan especial!
+      </p>
+      <a id="confirmLink" class="button" href="#" target="_blank" rel="noopener">Confirmar asistencia</a>
+    </div>
+
+    <div class="box">
+      <h2><i class="fa-solid fa-wand-magic-sparkles animated-icon"></i> Dress code</h2>
       <p id="dressCodeText"></p>
+    </div>
+
+    <div id="giftModule" class="box modulo-opcional">
+      <h2><i class="fa-solid fa-gift animated-icon"></i> Regalo</h2>
+      <p class="box-texto">
+        El mejor regalo es que vengas, pero si deseás regalarme algo,
+        podés colaborar con mis sueños y anhelos. ¡Muchas gracias!
+      </p>
+      <button class="btn" type="button" onclick="toggleGiftPanel()">Hacer un regalo</button>
+
+      <div id="giftPanel" class="gift-panel" hidden>
+        <div class="gift-row"><strong>Titular</strong><span id="giftTitular"></span></div>
+        <div class="gift-row"><strong>Banco</strong><span id="giftBanco"></span></div>
+        <div class="gift-row"><strong>Alias</strong><span id="giftAlias"></span></div>
+        <div class="gift-row"><strong>CBU</strong><span id="giftCbu"></span></div>
+        <div class="gift-row"><strong>DNI</strong><span id="giftDni"></span></div>
+        <div class="copy-actions">
+          <button class="btn copy-btn" type="button" onclick="copiarDato(CONFIG.regalo.alias)">Copiar alias</button>
+          <button class="btn copy-btn" type="button" onclick="copiarDato(CONFIG.regalo.cbu)">Copiar CBU</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="playlistModule" class="box modulo-opcional">
+      <h2><i class="fa-solid fa-record-vinyl animated-icon"></i> ¡Playlist!</h2>
+      <p class="box-texto">
+        ¡Ayudame sugiriendo las canciones que pensás que no pueden faltar en la fiesta!
+      </p>
+      <a id="playlistLink" class="button" href="#" target="_blank" rel="noopener">Playlist</a>
     </div>
 
     <div class="box">
@@ -421,7 +583,6 @@ a.button:hover {
         este momento tan especial...<br>
         Será una noche para recordar siempre
       </div>
-      <a id="confirmLink" class="button" href="#" target="_blank" rel="noopener">Confirmar asistencia</a>
     </div>
   </section>
 </main>
@@ -434,10 +595,15 @@ a.button:hover {
      Opciones: "rosa", "lila", "celeste", "dorado", "verde".
   3. Para cambiar fuentes, cambia solo el nombre de "fuentes".
      Opciones: "elegante", "romantica", "moderna", "dulce", "clasica", "glam".
+  4. Para mostrar u ocultar extras premium, usa true o false:
+     mostrarRegalo: true / false
+     mostrarPlaylist: true / false
 */
 const CONFIG = {
   paleta: "rosa",
   fuentes: "elegante",
+  mostrarRegalo: true,
+  mostrarPlaylist: true,
   nombre: "Sofía",
   fechaEvento: "2026-10-10T21:00:00",
   fechaTexto: "Sábado 10 de octubre",
@@ -448,6 +614,15 @@ const CONFIG = {
   dressCode: "Semiformal",
   whatsapp: "59895090806",
   mensajeWhatsApp: "Hola, quiero confirmar mi asistencia al cumpleaños de Sofía",
+  playlistLink: "",
+  mensajePlaylistWhatsApp: "Hola, quiero sugerir una canción para la fiesta: ",
+  regalo: {
+    titular: "Nombre Apellido",
+    banco: "Banco Galicia",
+    alias: "sofia.mis15",
+    cbu: "1234567890123456789012",
+    dni: "12345678"
+  },
   fotos: [
     "foto1.jpg",
     "foto2.jpg",
@@ -560,6 +735,28 @@ function cargarDatos() {
   document.getElementById("confirmLink").href = `https://wa.me/${CONFIG.whatsapp}?text=${texto}`;
 }
 
+function configurarExtras() {
+  const giftModule = document.getElementById("giftModule");
+  const playlistModule = document.getElementById("playlistModule");
+
+  giftModule.hidden = !CONFIG.mostrarRegalo;
+  playlistModule.hidden = !CONFIG.mostrarPlaylist;
+
+  if (CONFIG.mostrarRegalo) {
+    document.getElementById("giftTitular").innerText = CONFIG.regalo.titular;
+    document.getElementById("giftBanco").innerText = CONFIG.regalo.banco;
+    document.getElementById("giftAlias").innerText = CONFIG.regalo.alias;
+    document.getElementById("giftCbu").innerText = CONFIG.regalo.cbu;
+    document.getElementById("giftDni").innerText = CONFIG.regalo.dni;
+  }
+
+  if (CONFIG.mostrarPlaylist) {
+    const playlistLink = document.getElementById("playlistLink");
+    const sugerencia = encodeURIComponent(CONFIG.mensajePlaylistWhatsApp);
+    playlistLink.href = CONFIG.playlistLink || `https://wa.me/${CONFIG.whatsapp}?text=${sugerencia}`;
+  }
+}
+
 function actualizarCuentaRegresiva() {
   const now = Date.now();
   const diff = new Date(CONFIG.fechaEvento).getTime() - now;
@@ -580,16 +777,49 @@ function toggleMusic() {
   music.paused ? music.play() : music.pause();
 }
 
+function toggleGiftPanel() {
+  const panel = document.getElementById("giftPanel");
+  panel.hidden = !panel.hidden;
+}
+
+function copiarDato(valor) {
+  if (!valor) return;
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(valor);
+    return;
+  }
+
+  const input = document.createElement("input");
+  input.value = valor;
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand("copy");
+  input.remove();
+}
+
 function iniciarCarrusel() {
   const track = document.getElementById("carouselTrack");
   const dots = document.getElementById("carouselDots");
 
   CONFIG.fotos.forEach((foto, index) => {
+    const frame = document.createElement("div");
+    frame.className = "slide-frame";
+
+    const bg = document.createElement("img");
+    bg.className = "slide-bg";
+    bg.src = foto;
+    bg.alt = "";
+    bg.setAttribute("aria-hidden", "true");
+
     const img = document.createElement("img");
     img.className = "slide";
     img.src = foto;
     img.alt = `Recuerdo ${index + 1}`;
-    track.appendChild(img);
+
+    frame.appendChild(bg);
+    frame.appendChild(img);
+    track.appendChild(frame);
 
     const dot = document.createElement("button");
     dot.className = "carousel-dot";
@@ -662,6 +892,7 @@ function reiniciarAutoplay() {
 aplicarPaleta();
 aplicarFuentes();
 cargarDatos();
+configurarExtras();
 actualizarCuentaRegresiva();
 setInterval(actualizarCuentaRegresiva, 1000);
 window.addEventListener("load", iniciarCarrusel);
