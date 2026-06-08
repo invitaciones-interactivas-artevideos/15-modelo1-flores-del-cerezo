@@ -524,6 +524,11 @@ a.button:hover {
       <a id="mapLink" class="button" href="#" target="_blank" rel="noopener">Ver mapa</a>
     </div>
 
+     <div class="box">
+      <h2><i class="fa-solid fa-wand-magic-sparkles animated-icon"></i> Dress code</h2>
+      <p id="dressCodeText"></p>
+    </div>
+
     <div class="box">
       <h2><i class="fa-regular fa-image animated-icon"></i> Mis recuerdos</h2>
       <div class="carousel" aria-label="Carrete de fotos">
@@ -544,19 +549,22 @@ a.button:hover {
       </p>
       <a id="confirmLink" class="button" href="#" target="_blank" rel="noopener">Confirmar asistencia</a>
     </div>
-
-    <div class="box">
-      <h2><i class="fa-solid fa-wand-magic-sparkles animated-icon"></i> Dress code</h2>
-      <p id="dressCodeText"></p>
+    
+ <div id="playlistModule" class="box modulo-opcional">
+      <h2><i class="fa-solid fa-record-vinyl animated-icon"></i> ¡Playlist!</h2>
+      <p class="box-texto">
+        ¡Ayudame sugiriendo las canciones que pensás que no pueden faltar en la fiesta!
+      </p>
+      <a id="playlistLink" class="button" href="#" target="_blank" rel="noopener">Playlist</a>
     </div>
-
+   
     <div id="giftModule" class="box modulo-opcional">
       <h2><i class="fa-solid fa-gift animated-icon"></i> Regalo</h2>
       <p class="box-texto">
         El mejor regalo es que vengas, pero si deseás regalarme algo,
         podés colaborar con mis sueños y anhelos. ¡Muchas gracias!
       </p>
-      <button class="btn" type="button" onclick="toggleGiftPanel()">Hacer un regalo</button>
+      <button class="btn" type="button" onclick="toggleGiftPanel()">Ver Colectivo</button>
 
       <div id="giftPanel" class="gift-panel" hidden>
         <div class="gift-row"><strong>Nombre del titular</strong><span id="giftTitular"></span></div>
@@ -571,13 +579,7 @@ a.button:hover {
       </div>
     </div>
 
-    <div id="playlistModule" class="box modulo-opcional">
-      <h2><i class="fa-solid fa-record-vinyl animated-icon"></i> ¡Playlist!</h2>
-      <p class="box-texto">
-        ¡Ayudame sugiriendo las canciones que pensás que no pueden faltar en la fiesta!
-      </p>
-      <a id="playlistLink" class="button" href="#" target="_blank" rel="noopener">Playlist</a>
-    </div>
+   
 
     <div class="box">
       <div class="frase-final">
